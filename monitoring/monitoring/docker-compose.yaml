@@ -1,0 +1,16 @@
+networks:
+    nodesystemnet:
+        external: true
+
+services:
+    grafana:
+        image: grafana/grafana
+        container_name: grafana
+        ports:
+            - "3001:3000"
+        depends_on:
+            prometheus:
+                condition: service_started
+        networks:
+            nodesystemnet:
+                ipv4_address: "172.72.15.11"
